@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Option Calculator</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="js/onload.js"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<h1 class="text-center"><a href="https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model">Black-Scholes Model</a></h1>
+		<div class="row">
+
+			<div class="col-md-6">
+				<h2 class="text-center"><small>Option Price Calculation</small></h2>
+				<form class="form-horizontal" id="go_premium">
+
+					<div class="form-group">
+						<label class="col-sm-2 col-sm-offset-2 control-label" for="option_type">Type: </label>
+						<select class="col-sm-4 form-control" id="option_type">
+							<option>Call Option</option>
+							<option>Put Option</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+				    <label class="col-sm-2 col-sm-offset-2 control-label" for="spot">Spot: </label>
+				    <div class="col-sm-4">
+				      <input class="form-control" type="text" id="spot" placeholder="Spot-price" required>
+				    </div>
+				  </div>
+
+					<div class="form-group">
+				    <label class="col-sm-2 col-sm-offset-2  control-label" for="strike">Strike: </label>
+				    <div class="col-sm-4">
+				      <input class="form-control" type="text" id="strike" placeholder="Strike-price" required>
+				    </div>
+				  </div>
+
+					<div class="form-group">
+				    <label class="col-sm-2 col-sm-offset-2  control-label" for="rate">Rate,%: </label>
+				    <div class="col-sm-4">
+				      <input class="form-control" type="text" id="rate" placeholder="Risk-free Rate" required>
+				    </div>
+				  </div>
+
+					<div class="form-group">
+				    <label class="col-sm-2 col-sm-offset-2  control-label" for="T">Years: </label>
+				    <div class="col-sm-4">
+				      <input class="form-control" type="text" id="T" placeholder="Time to Maturity" required>
+				    </div>
+				  </div>
+
+					<div class="form-group">
+				    <label class="col-sm-2 col-sm-offset-2  control-label" for="sigma">Sigma,%: </label>
+				    <div class="col-sm-4">
+				      <input class="form-control" type="text" id="sigma" placeholder="Volatility" required>
+				    </div>
+				  </div>
+
+					<div class="form-group">
+				    <label class="col-sm-2 col-sm-offset-2  control-label" for="div_yield">DivYield,%: </label>
+				    <div class="col-sm-4">
+				      <input class="form-control" type="text" id="div_yield" placeholder="Dividend Yield">
+				    </div>
+				  </div>
+
+					<div class="form-group">
+						<div class="col-sm-2 col-sm-offset-2">
+							<button type="submit" class="btn btn-primary">Calculate</button>
+						</div>
+						<div class="col-sm-4">
+							<button type="reset" class="btn btn-danger">Cancel</button>
+						</div>
+					</div>
+
+					<div class="form-group">
+				    <label class="col-sm-2 col-sm-offset-2  control-label" for="premium">Price: </label>
+				    <div class="col-sm-4">
+				      <input class="form-control" type="text" id="premium">
+				    </div>
+				  </div>
+
+					<div class="form-group">
+				    <label class="col-sm-2 col-sm-offset-2  control-label" for="delta">Delta: </label>
+				    <div class="col-sm-4">
+				      <input class="form-control" type="text" id="delta">
+				    </div>
+				  </div>
+
+					<div class="form-group">
+				    <label class="col-sm-2 col-sm-offset-2  control-label" for="gamma">Gamma: </label>
+				    <div class="col-sm-4">
+				      <input class="form-control" type="text" id="gamma">
+				    </div>
+				  </div>
+
+					<div class="form-group">
+				    <label class="col-sm-2 col-sm-offset-2  control-label" for="theta">Theta: </label>
+				    <div class="col-sm-4">
+				      <input class="form-control" type="text" id="theta">
+				    </div>
+				  </div>
+
+					<div class="form-group">
+				    <label class="col-sm-2 col-sm-offset-2  control-label" for="vega">Vega: </label>
+				    <div class="col-sm-4">
+				      <input class="form-control" type="text" id="vega">
+				    </div>
+				  </div>
+
+				</form>
+			</div>
+
+			<div class="col-md-6">
+				<h2 class="text-center"><small>Implied Volatility Calculation</small></h2>
+				<form class="form-horizontal" id="go_iv">
+
+					<div class="form-group">
+						<label class="col-sm-2 col-sm-offset-2 control-label" for="iv_option_type">Type: </label>
+						<select class="col-sm-4 form-control" id="iv_option_type">
+							<option>Call Option</option>
+							<option>Put Option</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+				    <label class="col-sm-2 col-sm-offset-2 control-label" for="iv_spot">Spot: </label>
+				    <div class="col-sm-4">
+				      <input class="form-control" type="text" id="iv_spot" placeholder="Spot-price" required>
+				    </div>
+				  </div>
+
+					<div class="form-group">
+				    <label class="col-sm-2 col-sm-offset-2  control-label" for="iv_strike">Strike: </label>
+				    <div class="col-sm-4">
+				      <input class="form-control" type="text" id="iv_strike" placeholder="Strike-price" required>
+				    </div>
+				  </div>
+
+					<div class="form-group">
+				    <label class="col-sm-2 col-sm-offset-2  control-label" for="iv_rate">Rate,%: </label>
+				    <div class="col-sm-4">
+				      <input class="form-control" type="text" id="iv_rate" placeholder="Risk-free Rate" required>
+				    </div>
+				  </div>
+
+					<div class="form-group">
+				    <label class="col-sm-2 col-sm-offset-2  control-label" for="iv_T">Years: </label>
+				    <div class="col-sm-4">
+				      <input class="form-control" type="text" id="iv_T" placeholder="Time to Maturity" required>
+				    </div>
+				  </div>
+
+					<div class="form-group">
+				    <label class="col-sm-2 col-sm-offset-2  control-label" for="iv_premium">Price: </label>
+				    <div class="col-sm-4">
+				      <input class="form-control" type="text" id="iv_premium" placeholder="Premium"required>
+				    </div>
+				  </div>
+
+					<div class="form-group">
+				    <label class="col-sm-2 col-sm-offset-2  control-label" for="iv_div_yield">DivYield,%: </label>
+				    <div class="col-sm-4">
+				      <input class="form-control" type="text" id="iv_div_yield" placeholder="Dividend Yield">
+				    </div>
+				  </div>
+
+					<div class="form-group">
+						<div class="col-sm-2 col-sm-offset-2">
+							<button type="submit" class="btn btn-primary">Calculate</button>
+						</div>
+						<div class="col-sm-4">
+							<button type="reset" class="btn btn-danger">Cancel</button>
+						</div>
+					</div>
+
+					<div class="form-group">
+				    <label class="col-sm-2 col-sm-offset-2  control-label" for="iv">IV: </label>
+				    <div class="col-sm-4">
+				      <input class="form-control" type="text" id="iv">
+				    </div>
+				  </div>
+
+					<div class="form-group">
+				    <label class="col-sm-2 col-sm-offset-2  control-label" for="iv_delta">Delta: </label>
+				    <div class="col-sm-4">
+				      <input class="form-control" type="text" id="iv_delta">
+				    </div>
+				  </div>
+
+					<div class="form-group">
+				    <label class="col-sm-2 col-sm-offset-2  control-label" for="iv_gamma">Gamma: </label>
+				    <div class="col-sm-4">
+				      <input class="form-control" type="text" id="iv_gamma">
+				    </div>
+				  </div>
+
+					<div class="form-group">
+				    <label class="col-sm-2 col-sm-offset-2  control-label" for="iv_theta">Theta: </label>
+				    <div class="col-sm-4">
+				      <input class="form-control" type="text" id="iv_theta">
+				    </div>
+				  </div>
+
+					<div class="form-group">
+				    <label class="col-sm-2 col-sm-offset-2  control-label" for="iv_vega">Vega: </label>
+				    <div class="col-sm-4">
+				      <input class="form-control" type="text" id="iv_vega">
+				    </div>
+				  </div>
+
+				</form>
+			</div>
+
+		</div>
+	</div>
+</body>
